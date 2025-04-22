@@ -1,5 +1,6 @@
 
 # Librerías necesarias para el proyecto
-django
-djangorestframework
+django==5.2
+djangorestframework==3.16.0
+djangorestframework-simplejwt==5.5.0
 
