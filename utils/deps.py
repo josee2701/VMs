@@ -5,7 +5,7 @@ from sqlmodel import Session
 
 from configs.db import get_session
 from configs.security import ALGORITHM, SECRET_KEY
-from models.model import RoleEnum, User
+from models.users import RoleEnum, User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/")
 

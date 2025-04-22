@@ -2,9 +2,10 @@
 from fastapi import FastAPI
 
 from configs.db import create_db_and_tables
-from models.model import *
+from models.users import *
 from routers.auth import router as auth_router
 from routers.user import router as user_router
+from routers.vm import router as vm_router
 
 app = FastAPI()
 
@@ -12,6 +13,8 @@ app = FastAPI()
 app.include_router(user_router)
 # Incluimos el router de auth
 app.include_router(auth_router)
+# Incluimos el router de vms
+app.include_router(vm_router)
 
 @app.on_event("startup")
 def on_startup():

@@ -4,7 +4,7 @@ from pydantic import BaseModel, EmailStr
 from sqlmodel import Session, select
 
 from configs.db import get_session
-from models.model import User
+from models.users import User
 from utils.auth import create_access_token, verify_password
 
 router = APIRouter(tags=["auth"])

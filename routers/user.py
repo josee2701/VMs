@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from configs.db import get_session
-from models.model import User, UserCreate, UserRead, UserUpdate
+from models.users import User, UserCreate, UserRead, UserUpdate
 from utils.auth import hash_password
 
 router = APIRouter(
