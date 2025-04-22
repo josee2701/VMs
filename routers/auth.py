@@ -26,5 +26,5 @@ def login_json(
     user = session.exec(stmt).first()
     if not user or not verify_password(payload.password, user.password):
         raise HTTPException(401, "Credenciales incorrectas")
-    token = create_access_token({ "sub": str(user.id), "rol": user.rol.value })
+    token = create_access_token({ "sub": str(user.id),"name":str(user.name),"rol": user.rol.value })
     return {"access_token": token, "token_type": "bearer"}
