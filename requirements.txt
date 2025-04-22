@@ -1,0 +1,5 @@
+#Framework prinicpal para la creación de la API
+fastapi[standard]==0.115.12
+
+#Framework para la creación de la API
+sqlmodel==0.0.23
