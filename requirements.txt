@@ -1,5 +1,14 @@
 #Framework prinicpal para la creación de la API
 fastapi[standard]==0.115.12
 
-#Framework para la creación de la API
+#Libreria para crear modelos de datos y ORM
+#https://pypi.org/project/sqlmodel/0.0.23/
 sqlmodel==0.0.23
+
+#libreria para crear tokenes JWT
+#https://pypi.org/project/PyJWT/2.10.1/
+pyjwt==2.10.1
+
+#libreria para crear un sistema de autenticación
+#https://pypi.org/project/passlib/1.7.4/
+passlib[bcrypt]==1.7.4
