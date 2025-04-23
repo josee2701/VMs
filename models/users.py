@@ -12,7 +12,7 @@ class RoleEnum(str, Enum):
 
 class UserBase(SQLModel):
     name: str = Field(..., max_length=100)
-    password: str = Field(..., max_length=100)
+    password: str = Field(..., min_length=8, max_length=100)
     email: EmailStr
     rol: RoleEnum = Field(default=RoleEnum.client)
     
