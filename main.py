@@ -12,6 +12,7 @@ app = FastAPI()
 # Orígenes que permites
 origins = [
     "http://localhost:5173",
+    "https://vms2.netlify.app"
 ]
 
 # Añade el middleware de CORS
