@@ -7,8 +7,8 @@ from sqlmodel import Field, SQLModel
 
 
 class RoleEnum(str, Enum):
-    administrator = "administrator"
-    client        = "cliente"
+    admin = "administrador"
+    client = "cliente"
 
 class UserBase(SQLModel):
     name: str = Field(..., max_length=100)
