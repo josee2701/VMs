@@ -72,6 +72,7 @@ def update_vm(
     session.commit()
     session.refresh(vm)
     # 4) Publicamos el evento en background para no bloquear
+    print("🚀 broadcasting vm_created:", VMRead.from_orm(vm).dict())
     background_tasks.add_task(
         manager.broadcast,
         {
