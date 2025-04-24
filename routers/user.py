@@ -16,24 +16,24 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=List[UserRead])
-def read_users(*,session: Session = Depends(get_session),
+def list_users(*,session: Session = Depends(get_session),
 ):
-    users = session.exec(select(User)).all()
-    return users
+    return session.exec(select(User)).all()
 
 @router.get("/{user_id}", response_model=UserRead)
-def read_user(*,user_id: int,session: Session = Depends(get_session),
+def get_user(*,user_id: int,session: Session = Depends(get_session),
 ):
     user = session.get(User, user_id)
     if not user:
-        raise HTTPException(404, "Usuario no encontrado")
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
     return user
 
 @router.post("/", response_model=UserRead, status_code=status.HTTP_201_CREATED)
 def create_user(
     *,
-    background_tasks: BackgroundTasks,
     payload: UserCreate,
+    background_tasks: BackgroundTasks,
+    
     session: Session = Depends(get_session),
 ):
     # 1) Validación de unicidad
@@ -69,7 +69,6 @@ def create_user(
         )
     
     # 4) Publicamos el evento en background para no bloquear
-    # 🚀 emitimos evento “user_created”
     background_tasks.add_task(
         manager.broadcast,
         {
@@ -144,7 +143,7 @@ def delete_user(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail={"code": "USER_NOT_FOUND", "message": "Usuario no encontrado", "field": "user_id"},
+            detail={"code": "USER_NOT_FOUND", "message": "Usuario no encontrado", "field": "id"},
         )
     session.delete(user)
     try:
@@ -160,7 +159,7 @@ def delete_user(
         manager.broadcast,
         {
             "event": "user_deleted",
-            "user_id": user_id,
+            "user": { "id": user_id }
         },
     )
     return  # 204 no body

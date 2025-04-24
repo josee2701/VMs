@@ -5,7 +5,7 @@ from .ws_manager import ConnectionManager
 
 manager = ConnectionManager()
 
-async def users_ws_endpoint(websocket: WebSocket):
+async def websocket_ws_endpoint(websocket: WebSocket):
     """
     Mismo código que tenías en main.py,
     pero ahora aquí y usando el manager de este módulo.

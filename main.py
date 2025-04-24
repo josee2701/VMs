@@ -7,7 +7,7 @@ from models.users import *
 from routers.auth import router as auth_router
 from routers.user import router as user_router
 from routers.vm import router as vm_router
-from utils.ws_broadcaster import manager, users_ws_endpoint
+from utils.ws_broadcaster import manager, websocket_ws_endpoint
 
 app = FastAPI()
 
@@ -41,6 +41,7 @@ app.include_router(vm_router)
 
 
 # WebSocket endpoint
-app.websocket("/ws/users")(users_ws_endpoint)
+app.websocket("/ws/users")(websocket_ws_endpoint)
+app.websocket("/ws/vms")(websocket_ws_endpoint)
 
 
