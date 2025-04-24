@@ -143,7 +143,7 @@ def delete_user(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail={"code": "USER_NOT_FOUND", "message": "Usuario no encontrado", "field": "user_id"},
+            detail={"code": "USER_NOT_FOUND", "message": "Usuario no encontrado", "field": "id"},
         )
     session.delete(user)
     try:
@@ -159,7 +159,7 @@ def delete_user(
         manager.broadcast,
         {
             "event": "user_deleted",
-            "user_id": user_id,
+            "user": { "id": user_id }
         },
     )
     return  # 204 no body

@@ -16,6 +16,9 @@ class ConnectionManager:
         self.active_connections.remove(websocket)
 
     async def broadcast(self, message: dict):
-        # envía JSON a todos los clientes conectados
         for connection in list(self.active_connections):
-            await connection.send_json(message)
+            try:
+                await connection.send_json(message)
+            except:
+                self.disconnect(connection)
+
